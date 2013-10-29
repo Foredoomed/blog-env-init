@@ -12,86 +12,97 @@
 ###############################################################################
 
 
-SOURCES_LIST = "/etc/apt/sources.list"
-RUBY_VERSION = "2.0.0-p247"
-GEMRC = ".gemrc"
-LIMITS = "/etc/security/limits.conf"
+DIR="/data/blog"
+FILES="/data/blog/*"
+SOURCES_LIST="/etc/apt/sources.list"
+RUBY_VERSION="2.0.0-p247"
+GEMRC=".gemrc"
+LIMITS="/etc/security/limits.conf"
 
-NGINX_CONF = "https://raw.github.com/Foredoomed/lnmp/master/nginx.conf"
-NGINX_OLD = "/etc/nginx/nginx.conf"
-NGINX_BAK = "/etc/nginx/nginx.conf.bak"
-NGINX_DIR = "/etc/nginx"
+NGINX_CONF="https://raw.github.com/Foredoomed/lnmp/master/nginx.conf"
+NGINX_OLD="/etc/nginx/nginx.conf"
+NGINX_BAK="/etc/nginx/nginx.conf.bak"
+NGINX_DIR="/etc/nginx/"
+
+echo -e "\n***Initialization started***"
 
 # create folder
+echo -e "\nCreating folder..."
 cd ~
-mkdir data
-mkdir /data/blog
+if [ -d "$DIR" ]; then
+  sudo rm -rf $FILES
+else
+  sudo mkdir -p "$DIR"
+fi
 
 # update linux
-echo "Stopping sendmail..."
+echo -e "\nStopping sendmail..."
 service sendmail stop
 
-echo "Stopping httpd..."
+echo -e "\nStopping httpd..."
 service httpd stop
 
-echo "Deleting useless packages..."
+echo -e "\nDeleting useless packages..."
 sudo apt-get -y purge apache2-* bind9-* xinetd samba-* nscd-* portmap sendmail-* sasl2-bin
-sudo apt-get autoremove && apt-get clean
 
-echo "Updating os..."
-sudo apt-get update && apt-get upgrade
+sudo sh -c 'echo "deb http://nginx.org/packages/debian/ squeeze nginx" >> $SOURCES_LIST'
+sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ squeeze nginx"" >> $SOURCES_LIST'
+
+sudo apt-get autoremove && sudo apt-get clean
+
+echo -e "\nUpdating os..."
+sudo apt-get update && sudo apt-get upgrade
 
 # install git
-echo "Installing git..."
+echo -e "\nInstalling git..."
 sudo apt-get install git
 
 # install nginx
-echo "Installing nginx..."
-
-sudo echo "deb http://nginx.org/packages/debian/ squeeze nginx" >> $SOURCES_LIST
-sudo echo "deb-src http://nginx.org/packages/debian/ squeeze nginx" >> $SOURCES_LIST
-sudo apt-get update
+echo -e "\nInstalling nginx..."
 
 wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
 sudo apt-get install nginx
 
-echo "Fetching nginx config file..."
+echo -e "\nFetching nginx config file..."
 wget https://raw.github.com/Foredoomed/lnmp/master/nginx.conf
-cp $NGINX_OLD $ENGINX_BAK
-mv nginx.conf $NGINX_DIR
+sudo /bin/cp -f $NGINX_OLD $NGINX_BAK
+sudo mv nginx.conf $NGINX_DIR
 
-echo "Starting nginx..."
-nginx start
+echo -e "\nStarting nginx..."
+sudo service nginx start
 
 # install rvm and ruby
-echo "Installing rvm..."
+echo -e "\nInstalling rvm..."
+sudo apt-get install curl
 curl -L https://get.rvm.io | bash -s stable
-echo "Installing ruby..."
+source ~/.profile
+
+echo -e "\nInstalling ruby..."
 rvm install $RUBY_VERSION
 cd ~
 touch $GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
 
 # install required gems
-echo "Install Jekyll..."
-gem install jekyll
+echo -e "\nInstalling Jekyll..."
+sudo gem install jekyll
 
 # change locale time
-echo "Setting local time to shanghai..."
-cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+echo -e "\nSetting local time to shanghai..."
+sudo /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # change open file limit
-echo "Setting open file limit..."
+echo -e "\nSetting open file limit..."
 sudo echo "* soft nofile 65535" >> LIMITS
 sudo echo "* hard nofile 65535" >> LIMITS
 
 # build blog
-echo "Fetching blog..."
-cd /data/blog
-git clone git@github.com:Foredoomed/foredoomed.org.git
+echo -e "\nFetching blog..."
+cd $DIR
+git clone https://github.com/Foredoomed/foredoomed.org.git
 
-echo "Building blog..."
+echo -e "\nBuilding blog..."
 jekyll build
 
-echo "Environment initialization succeeded"
+echo -e "\n***Initialization completed***"
