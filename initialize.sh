@@ -51,7 +51,7 @@ sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ squeeze nginx"" >> $
 sudo apt-get autoremove && sudo apt-get clean
 
 echo -e "\nUpdating os..."
-sudo apt-get update && sudo apt-get upgrade
+sudo apt-get update && sudo apt-get -y upgrade
 
 # install git
 echo -e "\nInstalling git..."
