@@ -76,7 +76,7 @@ sudo service nginx start
 echo -e "\nInstalling rvm..."
 sudo apt-get install curl
 curl -L https://get.rvm.io | bash -s stable
-source ~/.profile
+source /etc/profile.d/rvm.sh
 
 echo -e "\nInstalling ruby..."
 rvm install $RUBY_VERSION
