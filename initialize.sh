@@ -45,8 +45,8 @@ service httpd stop
 echo -e "\nDeleting useless packages..."
 sudo apt-get -y purge apache2-* bind9-* xinetd samba-* nscd-* portmap sendmail-* sasl2-bin
 
-sudo sh -c 'echo "deb http://nginx.org/packages/debian/ squeeze nginx" >> $SOURCES_LIST'
-sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ squeeze nginx"" >> $SOURCES_LIST'
+sudo sh -c 'echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST'
+sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ wheezy nginx"" >> $SOURCES_LIST'
 
 sudo apt-get autoremove && sudo apt-get clean
 
