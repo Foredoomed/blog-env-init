@@ -2,9 +2,9 @@
 
 ###############################################################################
 #                                                                             #
-# This script does the initialization for a blog env on linux(Debian 6)       #
+# This script does the initialization for a blog env on linux(Debian 7)       #
 # such as : git, nginx, rvm, ruby, etc                                        #
-# https://github.com/Foredoomed/vps-init                                      #
+# https://github.com/Foredoomed/blog-env-init                                 #
 #                                                                             #
 # Created: 2013/10/28                                                         #
 # Last Updated: 2013/10/28                                                    #
@@ -15,7 +15,7 @@
 DIR="/data/blog"
 FILES="/data/blog/*"
 SOURCES_LIST="/etc/apt/sources.list"
-RUBY_VERSION="2.0.0-p247"
+RUBY_VERSION="1.9.3-p484"
 GEMRC=".gemrc"
 LIMITS="/etc/security/limits.conf"
 
@@ -55,7 +55,7 @@ sudo apt-get update && sudo apt-get -y upgrade
 
 # install git
 echo -e "\nInstalling git..."
-sudo apt-get install git
+sudo apt-get -y install git
 
 # install nginx
 echo -e "\nInstalling nginx..."
@@ -74,7 +74,7 @@ sudo service nginx start
 
 # install rvm and ruby
 echo -e "\nInstalling rvm..."
-sudo apt-get install curl
+sudo apt-get -y install curl
 curl -L https://get.rvm.io | bash -s stable
 source /etc/profile.d/rvm.sh
 
