@@ -12,8 +12,7 @@
 ###############################################################################
 
 
-DIR="/data/blog"
-FILES="/data/blog/*"
+DIR="/data"
 SOURCES_LIST="/etc/apt/sources.list"
 RUBY_VERSION="1.9.3-p547"
 GEMRC=".gemrc"
@@ -30,7 +29,7 @@ echo -e "\n***Initialization started***"
 echo -e "\nCreating folder..."
 cd ~
 if [ -d "$DIR" ]; then
-  sudo rm -rf $FILES
+  sudo rm -rf $DIR/*
 else
   sudo mkdir -p "$DIR"
 fi
@@ -88,7 +87,7 @@ rbenv global $RUBY_VERSION
 # install required gems
 echo -e "\nInstalling Bundler..."
 gem install bundler
-bundle init
+rbenv rehash
 
 # change locale time
 echo -e "\nSetting local time to shanghai..."
@@ -101,8 +100,9 @@ sudo echo "* hard nofile 65535" >> LIMITS
 
 # build blog
 echo -e "\nFetching blog..."
-cd $DIR
-git clone https://github.com/Foredoomed/foredoomed.org.git
+cd /data
+git clone https://github.com/Foredoomed/foredoomed.org.git blog
+cd blog
 bundle install
 
 echo -e "\nBuilding blog..."
