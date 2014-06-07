@@ -86,9 +86,9 @@ rbenv rehash
 rbenv global $RUBY_VERSION
 
 # install required gems
-echo -e "\nInstalling Jekyll..."
-sudo gem install jekyll
-rbenv rehash
+echo -e "\nInstalling Bundler..."
+gem install bundler
+bundle init
 
 # change locale time
 echo -e "\nSetting local time to shanghai..."
@@ -103,6 +103,7 @@ sudo echo "* hard nofile 65535" >> LIMITS
 echo -e "\nFetching blog..."
 cd $DIR
 git clone https://github.com/Foredoomed/foredoomed.org.git
+bundle install
 
 echo -e "\nBuilding blog..."
 jekyll build
