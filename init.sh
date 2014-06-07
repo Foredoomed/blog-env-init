@@ -7,7 +7,7 @@
 # https://github.com/Foredoomed/blog-env-init                                 #
 #                                                                             #
 # Created: 2013/10/28                                                         #
-# Last Updated: 2014/6/7                                                    #
+# Last Updated: 2014/6/7                                                      #
 #                                                                             #
 ###############################################################################
 
