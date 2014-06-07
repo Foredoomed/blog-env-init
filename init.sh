@@ -59,7 +59,6 @@ sudo apt-get -y install git
 
 # install nginx
 echo -e "\nInstalling nginx..."
-
 wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
 sudo apt-get install nginx
@@ -83,11 +82,13 @@ echo -e "\nInstalling ruby..."
 touch ~/$GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
 rbenv install $RUBY_VERSION
+rbenv rehash
 rbenv global $RUBY_VERSION
 
 # install required gems
 echo -e "\nInstalling Jekyll..."
 sudo gem install jekyll
+rbenv rehash
 
 # change locale time
 echo -e "\nSetting local time to shanghai..."
