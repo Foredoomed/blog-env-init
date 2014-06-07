@@ -7,7 +7,7 @@
 # https://github.com/Foredoomed/blog-env-init                                 #
 #                                                                             #
 # Created: 2013/10/28                                                         #
-# Last Updated: 2013/10/28                                                    #
+# Last Updated: 2014/6/7                                                    #
 #                                                                             #
 ###############################################################################
 
@@ -61,6 +61,7 @@ echo -e "\nInstalling nginx..."
 wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
 sudo apt-get install nginx
+rm -rf nginx_signing.key
 
 echo -e "\nFetching nginx config file..."
 wget https://raw.github.com/Foredoomed/lnmp/master/nginx.conf
