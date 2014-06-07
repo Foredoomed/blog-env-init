@@ -15,7 +15,7 @@
 DIR="/data/blog"
 FILES="/data/blog/*"
 SOURCES_LIST="/etc/apt/sources.list"
-RUBY_VERSION="1.9.3-p484"
+RUBY_VERSION="1.9.3-p547"
 GEMRC=".gemrc"
 LIMITS="/etc/security/limits.conf"
 
@@ -72,17 +72,18 @@ sudo mv nginx.conf $NGINX_DIR
 echo -e "\nStarting nginx..."
 sudo service nginx start
 
-# install rvm and ruby
-echo -e "\nInstalling rvm..."
-sudo apt-get -y install curl
-curl -L https://get.rvm.io | bash -s stable
-source /etc/profile.d/rvm.sh
+# install rbenv and ruby
+echo -e "\nInstalling rbenv..."
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+source ~/.bashrc
 
 echo -e "\nInstalling ruby..."
-rvm install $RUBY_VERSION
-cd ~
-touch $GEMRC
+touch ~/$GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
+rbenv install $RUBY_VERSION
+rbenv global $RUBY_VERSION
 
 # install required gems
 echo -e "\nInstalling Jekyll..."
