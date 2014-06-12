@@ -57,10 +57,10 @@ sudo apt-get -y install git
 
 # install nginx
 echo -e "\nInstalling nginx..."
-wget http://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
+#wget http://nginx.org/keys/nginx_signing.key
+#sudo apt-key add nginx_signing.key
 sudo apt-get -y install nginx
-rm -rf nginx_signing.key
+#rm -rf nginx_signing.key
 
 echo -e "\nFetching nginx config file..."
 wget https://raw.github.com/Foredoomed/lnmp/master/nginx.conf
