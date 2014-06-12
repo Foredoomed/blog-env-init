@@ -43,13 +43,18 @@ service httpd stop
 
 echo -e "\nDeleting useless packages..."
 sudo apt-get -y purge apache2-* bind9-* xinetd samba-* nscd-* portmap sendmail-* sasl2-bin
-
-sudo sh -c 'echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST'
-sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ wheezy nginx"" >> $SOURCES_LIST'
-
 sudo apt-get autoremove && sudo apt-get clean
 
 echo -e "\nUpdating os..."
+sudo sh -c 'echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST'
+sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ wheezy nginx"" >> $SOURCES_LIST'
+
+sudo sh -c 'echo "deb http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST'
+sudo sh -c 'echo "deb-src http://security.debian.org/ wheezy/updates main"" >> $SOURCES_LIST'
+
+echo "Package: *
+Pin: release a=security
+Pin-Priority: 1001" >> /ect/apt/preferences
 sudo apt-get update && sudo apt-get -y upgrade
 
 # install git
