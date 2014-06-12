@@ -49,8 +49,6 @@ echo -e "\nUpdating os..."
 echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
 echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
 
-echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" >> $SOURCES_LIST
-
 sudo apt-get update && sudo apt-get -y dist-upgrade
 
 # install git
@@ -73,41 +71,37 @@ echo -e "\nStarting nginx..."
 sudo service nginx start
 
 # install rbenv and ruby
-echo -e "\nInstalling rbenv..."
+#echo -e "\nInstalling rbenv..."
 #git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 #echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 #echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 #source ~/.bashrc
-sudo apt-get -y install curl
-curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
-echo "export RBENV_ROOT=\"\${HOME}/.rbenv\"
-if [ -d \"\${RBENV_ROOT}\" ]; then
-  export PATH=\"\${RBENV_ROOT}/bin:\${PATH}\"
-  eval \"\$(rbenv init -)\"
-fi" >> ~/.bashrc
-source ~/.bashrc
+#sudo apt-get -y install curl
+#curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+#echo "export RBENV_ROOT=\"\${HOME}/.rbenv\"
+#if [ -d \"\${RBENV_ROOT}\" ]; then
+#  export PATH=\"\${RBENV_ROOT}/bin:\${PATH}\"
+#  eval \"\$(rbenv init -)\"
+#fi" >> ~/.bashrc
+#source ~/.bashrc
 
 # install ruby-build:
-pushd /tmp
-  git clone git://github.com/sstephenson/ruby-build.git
-  cd ruby-build
-  ./install.sh
-popd
+#pushd /tmp
+#  git clone git://github.com/sstephenson/ruby-build.git
+#  cd ruby-build
+#  ./install.sh
+#popd
 
 echo -e "\nInstalling ruby..."
-sudo apt-get -y install --only-upgrade openssl
-sudo apt-get -y install --only-upgrade libssl1.0.0
 sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev
 touch ~/$GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
-rbenv install $RUBY_VERSION
-rbenv rehash
-rbenv global $RUBY_VERSION
+sudo apt-get -y install ruby
 
 # install required gems
 echo -e "\nInstalling Bundler..."
+gem install jekyll
 gem install bundler
-rbenv rehash
 
 # change locale time
 echo -e "\nSetting local time to shanghai..."
