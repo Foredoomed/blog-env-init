@@ -77,13 +77,13 @@ echo -e "\nInstalling rbenv..."
 #echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 #echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 #source ~/.bashrc
-wget https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
-cat <<EOT >> ~/.bashrc
-if [ -d "${RBENV_ROOT}" ]; then
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-fi
-EOT
+sudo apt-get install curl
+curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+echo "export RBENV_ROOT=\"\${HOME}/.rbenv\"
+if [ -d \"\${RBENV_ROOT}\" ]; then
+  export PATH=\"\${RBENV_ROOT}/bin:\${PATH}\"
+  eval \"\$(rbenv init -)\"
+fi" >> ~/.bashrc
 source ~/.bashrc
 
 echo -e "\nInstalling ruby..."
