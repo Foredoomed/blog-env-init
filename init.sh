@@ -73,11 +73,17 @@ sudo service nginx start
 
 # install rbenv and ruby
 echo -e "\nInstalling rbenv..."
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-source ~/.bashrc
-exec $SHELL -l
+#git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+#echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+#echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+#source ~/.bashrc
+wget https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+cat <<EOT >> ~/.bashrc
+if [ -d "${RBENV_ROOT}" ]; then
+  export PATH="${RBENV_ROOT}/bin:${PATH}"
+  eval "$(rbenv init -)"
+fi
+EOT
 
 echo -e "\nInstalling ruby..."
 touch ~/$GEMRC
