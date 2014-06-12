@@ -77,7 +77,7 @@ echo -e "\nInstalling rbenv..."
 #echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 #echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 #source ~/.bashrc
-sudo apt-get install curl
+sudo apt-get -y install curl
 curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
 echo "export RBENV_ROOT=\"\${HOME}/.rbenv\"
 if [ -d \"\${RBENV_ROOT}\" ]; then
