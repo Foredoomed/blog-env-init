@@ -55,7 +55,7 @@ sudo sh -c 'echo "deb-src http://security.debian.org/ wheezy/updates main" >> $S
 echo "Package: *
 Pin: release a=security
 Pin-Priority: 1001" >> /ect/apt/preferences
-sudo apt-get update && sudo apt-get -y upgrade
+sudo apt-get update && sudo apt-get -y dist-upgrade
 
 # install git
 echo -e "\nInstalling git..."
@@ -99,6 +99,8 @@ pushd /tmp
 popd
 
 echo -e "\nInstalling ruby..."
+sudo apt-get -y install --only-upgrade openssl
+sudo apt-get -y install --only-upgrade libssl1.0.0
 sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev
 touch ~/$GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
