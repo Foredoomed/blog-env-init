@@ -86,6 +86,13 @@ if [ -d \"\${RBENV_ROOT}\" ]; then
 fi" >> ~/.bashrc
 source ~/.bashrc
 
+# install ruby-build:
+pushd /tmp
+  git clone git://github.com/sstephenson/ruby-build.git
+  cd ruby-build
+  ./install.sh
+popd
+
 echo -e "\nInstalling ruby..."
 touch ~/$GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
