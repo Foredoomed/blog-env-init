@@ -93,14 +93,15 @@ sudo service nginx start
 #popd
 
 echo -e "\nInstalling ruby..."
-sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev
 touch ~/$GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
 sudo apt-get -y install ruby
 
 # install required gems
-echo -e "\nInstalling Bundler..."
+echo -e "\nInstalling jekyll..."
 gem install jekyll
+
+echo -e "\nInstalling bundler..."
 gem install bundler
 
 # change locale time
