@@ -60,7 +60,7 @@ sudo apt-get -y install git
 echo -e "\nInstalling nginx..."
 wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
-sudo apt-get install nginx
+sudo apt-get -y install nginx
 rm -rf nginx_signing.key
 
 echo -e "\nFetching nginx config file..."
@@ -77,6 +77,7 @@ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 source ~/.bashrc
+exec $SHELL -l
 
 echo -e "\nInstalling ruby..."
 touch ~/$GEMRC
