@@ -50,7 +50,6 @@ echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
 echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
 
 echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" >> $SOURCES_LIST
-echo "deb-src http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST
 
 sudo apt-get update && sudo apt-get -y dist-upgrade
 
