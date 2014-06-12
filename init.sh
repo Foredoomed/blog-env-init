@@ -46,10 +46,7 @@ sudo apt-get -y purge apache2-* bind9-* xinetd samba-* nscd-* portmap sendmail-*
 sudo apt-get autoremove && sudo apt-get clean
 
 echo -e "\nUpdating os..."
-echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
-echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
-
-sudo apt-get update && sudo apt-get -y dist-upgrade
+sudo apt-get update && sudo apt-get -y upgrade
 
 # install git
 echo -e "\nInstalling git..."
