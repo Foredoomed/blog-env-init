@@ -47,7 +47,7 @@ sudo apt-get autoremove && sudo apt-get clean
 
 echo -e "\nUpdating os..."
 sudo sh -c 'echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST'
-sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ wheezy nginx"" >> $SOURCES_LIST'
+sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST'
 
 sudo sh -c 'echo "deb http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST'
 sudo sh -c 'echo "deb-src http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST'
