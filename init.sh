@@ -50,7 +50,7 @@ sudo sh -c 'echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCE
 sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ wheezy nginx"" >> $SOURCES_LIST'
 
 sudo sh -c 'echo "deb http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST'
-sudo sh -c 'echo "deb-src http://security.debian.org/ wheezy/updates main"" >> $SOURCES_LIST'
+sudo sh -c 'echo "deb-src http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST'
 
 echo "Package: *
 Pin: release a=security
