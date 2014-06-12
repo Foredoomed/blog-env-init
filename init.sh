@@ -60,11 +60,17 @@ sudo apt-get -y install nginx
 #rm -rf nginx_signing.key
 
 echo -e "\nFetching nginx config file..."
+wget http://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
+echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
+echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
+sudo apt-get update
+sudo apt-get -y install nginx
+
+echo -e "\nStarting nginx..."
 wget https://raw.github.com/Foredoomed/lnmp/master/nginx.conf
 sudo /bin/cp -f $NGINX_OLD $NGINX_BAK
 sudo mv nginx.conf $NGINX_DIR
-
-echo -e "\nStarting nginx..."
 sudo service nginx start
 
 # install rbenv and ruby
@@ -89,10 +95,15 @@ sudo service nginx start
 #  ./install.sh
 #popd
 
+# install rvm
+sudo apt-get -y install curl
+\curl -sSL https://get.rvm.io | bash -s stable
+source /etc/profile.d/rvm.sh
+
 echo -e "\nInstalling ruby..."
 touch ~/$GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
-sudo apt-get -y install ruby
+rvm install 1.9.3-p547
 
 # install required gems
 echo -e "\nInstalling bundler..."
