@@ -84,6 +84,7 @@ if [ -d "${RBENV_ROOT}" ]; then
   eval "$(rbenv init -)"
 fi
 EOT
+source ~/.bashrc
 
 echo -e "\nInstalling ruby..."
 touch ~/$GEMRC
