@@ -98,9 +98,6 @@ echo "gem: --no-ri --no-rdoc" > $GEMRC
 sudo apt-get -y install ruby
 
 # install required gems
-echo -e "\nInstalling jekyll..."
-gem install jekyll
-
 echo -e "\nInstalling bundler..."
 gem install bundler
 
