@@ -52,9 +52,6 @@ echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
 echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" >> $SOURCES_LIST
 echo "deb-src http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST
 
-echo "Package: *
-Pin: release a=security
-Pin-Priority: 1001" >> /ect/apt/preferences
 sudo apt-get update && sudo apt-get -y dist-upgrade
 
 # install git
