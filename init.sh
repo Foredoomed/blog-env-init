@@ -14,7 +14,7 @@
 
 DIR="/data"
 SOURCES_LIST="/etc/apt/sources.list"
-RUBY_VERSION="1.9.3-p547"
+RUBY_VERSION="2.1.2"
 GEMRC=".gemrc"
 LIMITS="/etc/security/limits.conf"
 
