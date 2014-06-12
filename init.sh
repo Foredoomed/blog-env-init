@@ -46,11 +46,11 @@ sudo apt-get -y purge apache2-* bind9-* xinetd samba-* nscd-* portmap sendmail-*
 sudo apt-get autoremove && sudo apt-get clean
 
 echo -e "\nUpdating os..."
-sudo sh -c 'echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST'
-sudo sh -c 'echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST'
+echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
+echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
 
-sudo sh -c 'echo "deb http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST'
-sudo sh -c 'echo "deb-src http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST'
+echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" >> $SOURCES_LIST
+echo "deb-src http://security.debian.org/ wheezy/updates main" >> $SOURCES_LIST
 
 echo "Package: *
 Pin: release a=security
