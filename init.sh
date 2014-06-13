@@ -7,7 +7,7 @@
 # https://github.com/Foredoomed/blog-env-init                                 #
 #                                                                             #
 # Created: 2013/10/28                                                         #
-# Last Updated: 2014/6/7                                                      #
+# Last Updated: 2014/6/12                                                     #
 #                                                                             #
 ###############################################################################
 
@@ -54,18 +54,13 @@ sudo apt-get -y install git
 
 # install nginx
 echo -e "\nInstalling nginx..."
-#wget http://nginx.org/keys/nginx_signing.key
-#sudo apt-key add nginx_signing.key
-sudo apt-get -y install nginx
-#rm -rf nginx_signing.key
-
-echo -e "\nFetching nginx config file..."
 wget http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
 echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
 echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
 sudo apt-get update
 sudo apt-get -y install nginx
+rm -rf nginx_signing.key
 
 echo -e "\nStarting nginx..."
 wget https://raw.github.com/Foredoomed/lnmp/master/nginx.conf
