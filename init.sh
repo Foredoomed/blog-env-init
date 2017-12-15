@@ -104,7 +104,7 @@ source /etc/profile.d/rvm.sh
 echo -e "\nInstalling ruby..."
 touch ~/$GEMRC
 echo "gem: --no-ri --no-rdoc" > $GEMRC
-rvm install 1.9.3-p547
+rvm install 1.9.3-p551
 
 # install required gems
 echo -e "\nInstalling bundler..."
