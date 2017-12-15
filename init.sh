@@ -12,7 +12,7 @@
 ###############################################################################
 
 
-DIR="/data"
+DIR="/home"
 SOURCES_LIST="/etc/apt/sources.list"
 RUBY_VERSION="2.1.2"
 GEMRC=".gemrc"
@@ -25,14 +25,18 @@ NGINX_DIR="/etc/nginx/"
 
 echo -e "\n***Initialization started***"
 
+# update system package
+sudo apt-get update
+sudo apt-get -y upgrade
+
 # create folder
-echo -e "\nCreating folder..."
-cd ~
-if [ -d "$DIR" ]; then
-  sudo rm -rf $DIR/*
-else
-  sudo mkdir -p "$DIR"
-fi
+#echo -e "\nCreating folder..."
+#cd ~
+#if [ -d "$DIR" ]; then
+#  sudo rm -rf $DIR/*
+#else
+#  sudo mkdir -p "$DIR"
+#fi
 
 # update linux
 echo -e "\nStopping sendmail..."
@@ -54,13 +58,13 @@ sudo apt-get -y install git
 
 # install nginx
 echo -e "\nInstalling nginx..."
-wget http://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
-echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
-echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
-sudo apt-get update
+#wget http://nginx.org/keys/nginx_signing.key
+#sudo apt-key add nginx_signing.key
+#echo "deb http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
+#echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" >> $SOURCES_LIST
+#sudo apt-get update
 sudo apt-get -y install nginx
-rm -rf nginx_signing.key
+#rm -rf nginx_signing.key
 
 echo -e "\nStarting nginx..."
 wget https://raw.github.com/Foredoomed/lnmp/master/nginx.conf
@@ -92,6 +96,8 @@ sudo service nginx start
 
 # install rvm
 sudo apt-get -y install curl
+echo -e "\nInstalling rvm"
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 \curl -sSL https://get.rvm.io | bash -s stable
 source /etc/profile.d/rvm.sh
 
